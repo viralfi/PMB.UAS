@@ -1,0 +1,75 @@
+<ng-container *ngIf="(newProductState$ | async) as state" [ngSwitch]="state.dataState">
+  <ng-container *ngSwitchCase="DataState.LOADED">
+    <app-navbar [user]="state?.appData?.data?.user"></app-navbar>
+    <section>
+      <div class="container">
+        <nav aria-label="breadcrumb" style="margin-top: 8px;">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a [routerLink]="['/']">Home</a>
+            </li>
+            <li class="breadcrumb-item"> <a [routerLink]="['/products']">Products</a> </li>
+            <li class="breadcrumb-item active" aria-current="page">New</li>
+          </ol>
+        </nav>
+        <div class="row justify-content-center">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-body">
+                <div class="text-center">
+                  <h2><i style="margin-right: 5px;" class="bi bi-person-plus-fill"></i> Create Product
+                  </h2>
+                </div>
+                <div *ngIf="state.error"
+                     class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show"
+                     role="alert">
+                  {{ state.error }}
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"
+                          aria-label="Close"></button>
+                </div>
+
+                <form #newProductForm="ngForm" (ngSubmit)="createProduct(newProductForm)">
+                  <div class="row">
+                    <div class="col-md-6" style="margin-bottom: 15px;">
+                      <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" ngModel name="name" class="form-control" required>
+                      </div>
+                    </div>
+                    <div class="col-md-6" style="margin-bottom: 15px;">
+                      <div class="form-group">
+                        <label >Harga</label>
+                        <input type="text" ngModel name="harga" class="form-control" required>
+                      </div>
+                    </div>
+                    <div class="col-md-6" style="margin-bottom: 15px;">
+                      <div class="form-group">
+                        <label>Stok</label>
+                        <input type="text" ngModel name="stok" class="form-control" required>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Image URL</label>
+                        <input type="text" ngModel name="imageUrl" class="form-control" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <button [disabled]="state.dataState === DataState.LOADING || newProductForm.invalid || newProductForm.pristine|| (isLaoding$ | async)"
+                            type="submit" class="btn btn-primary mt-5">
+                                            <span *ngIf="isLaoding$ | async" class="spinner-border spinner-border-sm"
+                                                  role="status" aria-hidden="true" style="margin-right: 5px;"></span>
+                      <span *ngIf="isLaoding$ | async">Saving...</span>
+                      <span *ngIf="!(isLaoding$ | async)">Save Product</span>
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </ng-container>
+</ng-container>
