@@ -84,7 +84,7 @@
                       <div class="invoice-price-row">
                         <div class="sub-price">
                           <small>SUBTOTAL</small>
-                          <span class="text-inverse">${{ state?.appData?.data?.invoice.total }}</span>
+                          <span class="text-inverse">{{ state?.appData?.data?.invoice.total }}</span>
                         </div>
                         <div class="sub-price">
                           <i class="fa fa-plus text-muted"></i>
@@ -92,13 +92,13 @@
                         <div class="sub-price">
                           <small>TAX (5.4%)</small>
                           <span
-                            class="text-inverse">${{ state?.appData?.data?.invoice.total * (5.4 / 100) | number: '.2-2' }}</span>
+                            class="text-inverse">{{ state?.appData?.data?.invoice.total * (5.4 / 100) | number: '.2-2' }}</span>
                         </div>
                       </div>
                     </div>
                     <div class="invoice-price-right">
                       <small>TOTAL</small> <span
-                      class="f-w-600">${{ state?.appData?.data?.invoice.total * (5.4 / 100) + state?.appData?.data?.invoice.total | number: '.2-2' }} </span>
+                      class="f-w-600">{{ state?.appData?.data?.invoice.total * (5.4 / 100) + state?.appData?.data?.invoice.total | number: '.2-2' }} </span>
                     </div>
                   </div>
                 </div>

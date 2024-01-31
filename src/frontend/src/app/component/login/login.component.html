@@ -1,11 +1,12 @@
 <section *ngIf="(loginState$ | async) as state" [ngSwitch]="state.dataState">
   <div *ngIf="!state.loginSuccess && !state.isUsingMfa" class="container">
     <div class="row justify-content-center my-5">
-      <div class="col-md-6" style="margin-top: 50px;">
-        <div class="card">
+      <div class="col-md-6" style="margin-top: 450px;">
+        <div class="card" style="background-color: lightsteelblue">
           <div class="card-body">
             <div class="text-center">
-              <h2><i class="bi bi-safe" style="margin-right: 5px;"></i>User Management</h2>
+              <h2><i style="margin-right: 5px;"></i> Management Market</h2>
+
               <!-- <p class="lead">Questions? Do not hesitate to contact us.</p> -->
               <h5 class="card-title mt-4 mb-5">Account Login</h5>
               <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
@@ -61,7 +62,7 @@
         <div class="card">
           <div class="card-body">
             <div class="text-center">
-              <h2><i class="bi bi-safe" style="margin-right: 5px;"></i>User Management</h2>
+              <h2><i class="bi bi-safe" style="margin-right: 5px;"></i>Sistem Pendaftaran</h2>
               <h5 class="card-title mt-4 mb-4">Verification Code Sent To ...{{ state.phone }}</h5>
               <i class="bi bi-check-circle-fill" style="font-size: 30px;color: green;"></i>
               <p class="mt-2" style="font-size: 20px;">Please access your SMS and enter the code.</p>

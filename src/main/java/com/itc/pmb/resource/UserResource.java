@@ -1,16 +1,16 @@
-package com.vialfinaz.sisteminforklinik.resource;
+package com.itc.pmb.resource;
 
-import com.vialfinaz.sisteminforklinik.domain.HttpResponse;
-import com.vialfinaz.sisteminforklinik.domain.User;
-import com.vialfinaz.sisteminforklinik.domain.UserPrincipal;
-import com.vialfinaz.sisteminforklinik.dto.UserDTO;
-import com.vialfinaz.sisteminforklinik.event.NewUserEvent;
-import com.vialfinaz.sisteminforklinik.exception.ApiException;
-import com.vialfinaz.sisteminforklinik.form.*;
-import com.vialfinaz.sisteminforklinik.provider.TokenProvider;
-import com.vialfinaz.sisteminforklinik.service.EventService;
-import com.vialfinaz.sisteminforklinik.service.RoleService;
-import com.vialfinaz.sisteminforklinik.service.UserService;
+import com.itc.pmb.domain.HttpResponse;
+import com.itc.pmb.domain.User;
+import com.itc.pmb.domain.UserPrincipal;
+import com.itc.pmb.dto.UserDTO;
+import com.itc.pmb.event.NewUserEvent;
+import com.itc.pmb.exception.ApiException;
+import com.itc.pmb.form.*;
+import com.itc.pmb.provider.TokenProvider;
+import com.itc.pmb.service.EventService;
+import com.itc.pmb.service.RoleService;
+import com.itc.pmb.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
@@ -27,11 +27,11 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.concurrent.TimeUnit;
 
-import static com.vialfinaz.sisteminforklinik.Enumeration.EventType.*;
-import static com.vialfinaz.sisteminforklinik.dtomapper.UserDTOMapper.toUser;
-import static com.vialfinaz.sisteminforklinik.utils.ExceptionUtils.processError;
-import static com.vialfinaz.sisteminforklinik.utils.UserUtils.getAuthenticatedUser;
-import static com.vialfinaz.sisteminforklinik.utils.UserUtils.getLoggedInUser;
+import static com.itc.pmb.enumeration.EventType.*;
+import static com.itc.pmb.dtomapper.UserDTOMapper.toUser;
+import static com.itc.pmb.utils.ExceptionUtils.processError;
+import static com.itc.pmb.utils.UserUtils.getAuthenticatedUser;
+import static com.itc.pmb.utils.UserUtils.getLoggedInUser;
 import static java.time.LocalDateTime.now;
 import static java.util.Map.of;
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
@@ -69,7 +69,7 @@ public class UserResource {
                 HttpResponse.builder()
                         .timeStamp(now().toString())
                         .data(of("user", userDto))
-                        .message(String.format("User account created for user %s", user.getFirstName()))
+                        .message(String.format("User account created for user %s", user.getFullName()))
                         .status(CREATED)
                         .statusCode(CREATED.value())
                         .build());

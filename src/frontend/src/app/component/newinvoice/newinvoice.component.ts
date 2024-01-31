@@ -7,6 +7,7 @@ import { Customer } from 'src/app/interface/customer';
 import { State } from 'src/app/interface/state';
 import { User } from 'src/app/interface/user';
 import { CustomerService } from 'src/app/service/customer.service';
+import {ProductService} from "../../service/product.service";
 
 @Component({
   selector: 'app-newinvoice',
@@ -20,7 +21,8 @@ export class NewinvoiceComponent implements OnInit {
   isLoading$ = this.isLoadingSubject.asObservable();
   readonly DataState = DataState;
 
-  constructor(private customerService: CustomerService) { }
+  constructor(private customerService: CustomerService,
+  private product: ProductService) { }
 
   ngOnInit(): void {
     this.newInvoiceState$ = this.customerService.newInvoice$()
@@ -40,7 +42,7 @@ export class NewinvoiceComponent implements OnInit {
   newInvoice(newInvoiceForm: NgForm): void {
     this.dataSubject.next({ ...this.dataSubject.value, message: null });
     this.isLoadingSubject.next(true);
-    this.newInvoiceState$ = this.customerService.createInvoice$(newInvoiceForm.value.customerId, newInvoiceForm.value)
+    this.newInvoiceState$ = this.customerService.createInvoice$(newInvoiceForm.value.custemerId,  newInvoiceForm.value)
       .pipe(
         map(response => {
           console.log(response);

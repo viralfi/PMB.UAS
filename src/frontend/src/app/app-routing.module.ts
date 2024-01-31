@@ -9,10 +9,14 @@ import {ResetpasswordComponent} from './component/resetpassword/resetpassword.co
 import {VerifyComponent} from './component/verify/verify.component';
 import {AuthenticationGuard} from "./guard/authentication.guard";
 import {NewcustomerComponent} from "./component/newcustomer/newcustomer.component";
-import {NewinvoiceComponent} from "./component/newinvoice/newinvoice.component";
-import {InvoicesComponent} from "./component/invoices/invoices.component";
 import {CustomerComponent} from "./component/customer/customer.component";
+import {NewuserComponent} from "./component/newuser/newuser.component";
+import {ProductsComponent} from "./component/products/products.component";
+import {NewproductComponent} from "./component/newproduct/newproduct.component";
 import {InvoiceComponent} from "./component/invoice/invoice.component";
+import {InvoicesComponent} from "./component/invoices/invoices.component";
+import {NewinvoiceComponent} from "./component/newinvoice/newinvoice.component";
+import {ProductComponent} from "./component/product/product.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -25,8 +29,12 @@ const routes: Routes = [
   { path: 'customers/new', component: NewcustomerComponent, canActivate: [AuthenticationGuard] },
   { path: 'invoices/new', component: NewinvoiceComponent, canActivate: [AuthenticationGuard] },
   { path: 'invoices', component: InvoicesComponent, canActivate: [AuthenticationGuard] },
+  { path: 'users/new', component: NewuserComponent, canActivate: [AuthenticationGuard] },
   { path: 'customer/:id', component: CustomerComponent, canActivate: [AuthenticationGuard] },
+  { path: 'product/:id', component: ProductComponent, canActivate: [AuthenticationGuard] },
   { path: 'invoices/:id/:invoiceNumber', component: InvoiceComponent, canActivate: [AuthenticationGuard] },
+  { path: 'products', component: ProductsComponent, canActivate: [AuthenticationGuard] },
+  { path: 'products/new', component: NewproductComponent, canActivate: [AuthenticationGuard] },
   { path: '', component: HomeComponent, canActivate: [AuthenticationGuard] },
   { path: '', redirectTo: '/', pathMatch: 'full' },
   { path: '**', component: HomeComponent }

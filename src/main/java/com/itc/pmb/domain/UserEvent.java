@@ -1,4 +1,4 @@
-package com.vialfinaz.sisteminforklinik.domain;
+package com.itc.pmb.domain;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;

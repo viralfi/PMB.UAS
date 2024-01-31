@@ -1,12 +1,16 @@
-package com.vialfinaz.sisteminforklinik.resource;
+package com.itc.pmb.resource;
 
-import com.vialfinaz.sisteminforklinik.domain.Customer;
-import com.vialfinaz.sisteminforklinik.domain.HttpResponse;
-import com.vialfinaz.sisteminforklinik.domain.Invoice;
-import com.vialfinaz.sisteminforklinik.dto.UserDTO;
-import com.vialfinaz.sisteminforklinik.report.CustomerReport;
-import com.vialfinaz.sisteminforklinik.service.CustomerService;
-import com.vialfinaz.sisteminforklinik.service.UserService;
+import com.itc.pmb.domain.Customer;
+import com.itc.pmb.domain.HttpResponse;
+import com.itc.pmb.domain.Invoice;
+import com.itc.pmb.domain.Product;
+import com.itc.pmb.dto.UserDTO;
+import com.itc.pmb.report.CustomerReport;
+import com.itc.pmb.report.ProductReport;
+import com.itc.pmb.repository.InvoiceRepository;
+import com.itc.pmb.service.CustomerService;
+import com.itc.pmb.service.ProductService;
+import com.itc.pmb.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -32,6 +36,7 @@ import static org.springframework.http.MediaType.parseMediaType;
 @RequiredArgsConstructor
 public class CustomerResource {
     private final CustomerService customerService;
+    private final ProductService productService;
     private final UserService userService;
 
     @GetMapping("/list")
@@ -182,7 +187,7 @@ public class CustomerResource {
                         .statusCode(OK.value())
                         .build());
     }
-    @GetMapping("/download/report")
+    @GetMapping("/download/customers")
     public ResponseEntity<Resource> downloadCustomerReport() {
         List<Customer> customers = new ArrayList<>();
         customerService.getCustomers().iterator().forEachRemaining(customers::add);
@@ -194,10 +199,11 @@ public class CustomerResource {
                 .headers(headers).body(report.export());
     }
 
+
 //    @GetMapping("/download/invoices")
 //    public ResponseEntity<Resource> downloadInvoiceReport() {
 //        List<Invoice> invoices = new ArrayList<>();
-//        customerService.getInvoices().iterator().forEachRemaining(invoices::add);
+//        productService.getInvoices().iterator().forEachRemaining(invoices::add);
 //        InvoiceReport report = new InvoiceReport(invoices);
 //        HttpHeaders headers = new HttpHeaders();
 //        headers.add("File-Name", "invoices-report.xlsx");

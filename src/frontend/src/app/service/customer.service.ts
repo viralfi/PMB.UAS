@@ -92,6 +92,7 @@ export class CustomerService {
         catchError(this.handleError)
       );
 
+
   downloadInvoices$ = () => <Observable<HttpEvent<Blob>>>
     this.http.get(`${this.server}/customer/download/invoices`,
       { reportProgress: true, observe: 'events', responseType: 'blob' })

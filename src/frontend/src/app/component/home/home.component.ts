@@ -78,11 +78,11 @@ export class HomeComponent  implements OnInit {
         map(response => {
           console.log(response);
           this.reportProgress(response);
-          return { dataState: DataState.LOADED, appData: this.dataSubject.value };
+          return {dataState: DataState.LOADED, appData: this.dataSubject.value};
         }),
-        startWith({ dataState: DataState.LOADED, appData: this.dataSubject.value }),
+        startWith({dataState: DataState.LOADED, appData: this.dataSubject.value}),
         catchError((error: string) => {
-          return of({ dataState: DataState.LOADED, error, appData: this.dataSubject.value })
+          return of({dataState: DataState.LOADED, error, appData: this.dataSubject.value})
         })
       )
   }

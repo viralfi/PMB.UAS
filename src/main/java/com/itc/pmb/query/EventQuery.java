@@ -1,4 +1,4 @@
-package com.vialfinaz.sisteminforklinik.Query;
+package com.itc.pmb.query;
 
 public class EventQuery {
     public static final String SELECT_EVENTS_BY_USER_ID_QUERY =

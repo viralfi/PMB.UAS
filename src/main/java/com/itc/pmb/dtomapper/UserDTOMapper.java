@@ -1,8 +1,8 @@
-package com.vialfinaz.sisteminforklinik.dtomapper;
+package com.itc.pmb.dtomapper;
 
-import com.vialfinaz.sisteminforklinik.domain.Role;
-import com.vialfinaz.sisteminforklinik.domain.User;
-import com.vialfinaz.sisteminforklinik.dto.UserDTO;
+import com.itc.pmb.domain.Role;
+import com.itc.pmb.domain.User;
+import com.itc.pmb.dto.UserDTO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 

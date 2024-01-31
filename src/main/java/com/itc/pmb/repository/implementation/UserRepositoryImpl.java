@@ -1,16 +1,16 @@
-package com.vialfinaz.sisteminforklinik.Repository.implementation;
+package com.itc.pmb.repository.implementation;
 
-import com.vialfinaz.sisteminforklinik.Enumeration.VerificationType;
-import com.vialfinaz.sisteminforklinik.Repository.RoleRepository;
-import com.vialfinaz.sisteminforklinik.Repository.UserRepository;
-import com.vialfinaz.sisteminforklinik.exception.ApiException;
-import com.vialfinaz.sisteminforklinik.domain.Role;
-import com.vialfinaz.sisteminforklinik.domain.User;
-import com.vialfinaz.sisteminforklinik.domain.UserPrincipal;
-import com.vialfinaz.sisteminforklinik.dto.UserDTO;
-import com.vialfinaz.sisteminforklinik.form.UpdateForm;
-import com.vialfinaz.sisteminforklinik.rowmapper.UserRowMapper;
-import com.vialfinaz.sisteminforklinik.service.EmailService;
+import com.itc.pmb.enumeration.VerificationType;
+import com.itc.pmb.repository.RoleRepository;
+import com.itc.pmb.repository.UserRepository;
+import com.itc.pmb.domain.Role;
+import com.itc.pmb.domain.User;
+import com.itc.pmb.domain.UserPrincipal;
+import com.itc.pmb.dto.UserDTO;
+import com.itc.pmb.exception.ApiException;
+import com.itc.pmb.form.UpdateForm;
+import com.itc.pmb.rowmapper.UserRowMapper;
+import com.itc.pmb.service.EmailService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -38,10 +38,10 @@ import java.util.Date;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
-import static com.vialfinaz.sisteminforklinik.Enumeration.RoleType.ROLE_USER;
-import static com.vialfinaz.sisteminforklinik.Enumeration.VerificationType.ACCOUNT;
-import static com.vialfinaz.sisteminforklinik.Enumeration.VerificationType.PASSWORD;
-import static com.vialfinaz.sisteminforklinik.Query.UserQuery.*;
+import static com.itc.pmb.enumeration.RoleType.ROLE_USERS;
+import static com.itc.pmb.enumeration.VerificationType.ACCOUNT;
+import static com.itc.pmb.enumeration.VerificationType.PASSWORD;
+import static com.itc.pmb.query.UserQuery.*;
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 import static java.util.Map.of;
 import static java.util.Objects.requireNonNull;
@@ -54,7 +54,7 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 @Repository
 @RequiredArgsConstructor
 @Slf4j
-public class userRepositoryImpl implements UserRepository<User>, UserDetailsService {
+public class UserRepositoryImpl implements UserRepository<User>, UserDetailsService {
 
     //    private static final String DATE_FORMAT = "yyyy-MM-dd hh:mm:ss";
     private static final String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss.SSSSSS";
@@ -67,16 +67,21 @@ public class userRepositoryImpl implements UserRepository<User>, UserDetailsServ
     public User create(User user) {
         if (getEmailCount(user.getEmail().trim().toLowerCase()) > 0)
             throw new ApiException("Email already in use. Please use a different email and try again.");
+        if (getPhone(user.getPhone().trim().toLowerCase()) > 0)
+            throw new ApiException("Phone already in use. Please use a different phone and try again.");
         try {
             KeyHolder holder = new GeneratedKeyHolder();
             SqlParameterSource parameters = getSqlParameterSource(user);
             jdbc.update(INSERT_USER_QUERY, parameters, holder, new String[]{"id"});
             user.setId(requireNonNull(holder.getKey()).longValue());
-            roleRepository.addRoleToUser(user.getId(), ROLE_USER.name());
+
+            roleRepository.addRoleToUser(user.getId(), ROLE_USERS.name());
+
             String verificationUrl = getVerificationUrl(UUID.randomUUID().toString(), ACCOUNT.getType());
             Timestamp verificationDate = Timestamp.valueOf(LocalDateTime.now());
+
             jdbc.update(INSERT_ACCOUNT_VERIFICATION_URL_QUERY, of("userId", user.getId(), "url", verificationUrl, "date", verificationDate));
-            sendEmail(user.getFirstName(), user.getEmail(), verificationUrl, ACCOUNT);
+            sendEmail(user.getFullName(), user.getEmail(), verificationUrl, ACCOUNT);
             // emailService.sendVerificationEmail(user.getFirstName(), user.getEmail(), verificationUrl, ACCOUNT);
             user.setEnabled(false);
             user.setNotLocked(true);
@@ -87,6 +92,9 @@ public class userRepositoryImpl implements UserRepository<User>, UserDetailsServ
         }
     }
 
+    private Integer getPhone(String phone) {
+        return jdbc.queryForObject(COUNT_USER_PHONE_QUERY, of("phone", phone), Integer.class);
+    }
 
 
     @Override
@@ -189,7 +197,7 @@ public class userRepositoryImpl implements UserRepository<User>, UserDetailsServ
             String verificationUrl = getVerificationUrl(UUID.randomUUID().toString(), PASSWORD.getType());
             jdbc.update(DELETE_PASSWORD_VERIFICATION_BY_USER_ID_QUERY, of("userId", user.getId()));
             jdbc.update(INSERT_PASSWORD_VERIFICATION_QUERY, of("userId", user.getId(), "url", verificationUrl, "expirationDate", expirationDate));
-            sendEmail(user.getFirstName(), email, verificationUrl, PASSWORD);
+            sendEmail(user.getFullName(), email, verificationUrl, PASSWORD);
             log.info("Verification URL: {}", verificationUrl);
         } catch (Exception exception) {
             throw new ApiException("An error occurred. Please try again.");
@@ -317,8 +325,8 @@ public class userRepositoryImpl implements UserRepository<User>, UserDetailsServ
 
     }
 
-    private void sendEmail(String firstName, String email, String verificationUrl, VerificationType verificationType) {
-        CompletableFuture.runAsync(() -> emailService.sendVerificationEmail(firstName, email, verificationUrl, verificationType));
+    private void sendEmail(String fullName, String email, String verificationUrl, VerificationType verificationType) {
+        CompletableFuture.runAsync(() -> emailService.sendVerificationEmail(fullName, email, verificationUrl, verificationType));
     }
 
     private String setUserImageUrl(String email) {
@@ -370,8 +378,8 @@ public class userRepositoryImpl implements UserRepository<User>, UserDetailsServ
 
     private SqlParameterSource getSqlParameterSource(User user) {
         return new MapSqlParameterSource()
-                .addValue("firstName", user.getFirstName())
-                .addValue("lastName", user.getLastName())
+                .addValue("fullName", user.getFullName())
+                .addValue("phone", user.getPhone())
                 .addValue("email", user.getEmail())
                 .addValue("password", encoder.encode(user.getPassword()));
     }
@@ -379,8 +387,7 @@ public class userRepositoryImpl implements UserRepository<User>, UserDetailsServ
     private SqlParameterSource getUserDetailsSqlParameterSource(UpdateForm user) {
         return new MapSqlParameterSource()
                 .addValue("id", user.getId())
-                .addValue("firstName", user.getFirstName())
-                .addValue("lastName", user.getLastName())
+                .addValue("fullName", user.getFullName())
                 .addValue("email", user.getEmail())
                 .addValue("phone", user.getPhone())
                 .addValue("address", user.getAddress())

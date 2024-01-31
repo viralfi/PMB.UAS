@@ -1,7 +1,7 @@
-package com.vialfinaz.sisteminforklinik.report;
+package com.itc.pmb.report;
 
-import com.vialfinaz.sisteminforklinik.domain.Customer;
-import com.vialfinaz.sisteminforklinik.exception.ApiException;
+import com.itc.pmb.domain.Customer;
+import com.itc.pmb.exception.ApiException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
@@ -21,10 +21,10 @@ import static org.apache.commons.lang3.time.DateFormatUtils.*;
 @Slf4j
 public class CustomerReport {
     public static final String DATE_FORMATTER = "yyyy-MM-dd hh:mm:ss";
-    private  XSSFWorkbook workbook;
-    private  XSSFSheet sheet;
-    private  List<Customer> customers;
-    private static  String[] HEADERS = { "ID", "Name", "Email", "Type", "Status", "Address", "Phone", "Created At" };
+    private  final XSSFWorkbook workbook;
+    private  final XSSFSheet sheet;
+    private final List<Customer> customers;
+    private static  final String[] HEADERS = { "ID", "Name", "Email", "Type", "Status", "Address", "Phone", "Created At" };
 
     public CustomerReport(List<Customer> customers) {
         this.customers = customers;

@@ -8,21 +8,21 @@
             <li class="breadcrumb-item">
               <a [routerLink]="['/']">Home</a>
             </li>
-            <li class="breadcrumb-item active"> Customers </li>
+            <li class="breadcrumb-item active"> Data Customers </li>
           </ol>
         </nav>
         <div class="row mt-3">
           <div class="col">
-            <h4 class="fw-bold text-start">Customers</h4>
+            <h4 class="fw-bold text-start">Data Customers</h4>
           </div>
           <div class="col">
-            <h4 class="fw-bold text-end"><i style="cursor: pointer;color: green;font-size: 30px;" class="bi bi-file-earmark-excel"></i></h4>
+            <h4 (click)="report()" class="fw-bold text-end"><i style="cursor: pointer;color: green;font-size: 30px;" class="bi bi-file-earmark-excel"></i></h4>
           </div>
           <div class="col-xm-12">
             <form #searchForm="ngForm" (ngSubmit)="searchCustomers(searchForm)" class="row g-3 float-end">
               <div class="col-auto">
                 <label for="name" class="visually-hidden"></label>
-                <input type="text" ngModel name="name" #name class="form-control" placeholder="Customer Name">
+                <input type="text" ngModel name="name" #name class="form-control" placeholder="Search...">
               </div>
               <div class="col-auto">
                 <button type="submit" class="btn btn-primary mb-3">Search Customers</button>
@@ -30,16 +30,16 @@
             </form>
           </div>
           <div class="col-xm-12">
-            <table class="table table-hover">
+            <table class="table1 table-hover">
               <thead>
               <tr>
                 <th class="text-center" scope="col">ID</th>
                 <th scope="col">Photo</th>
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
+                <th scope="col">Alamat</th>
                 <th scope="col">Phone</th>
                 <th scope="col">Status</th>
-                <th scope="col">Type</th>
                 <th scope="col">Action</th>
               </tr>
               </thead>
@@ -49,6 +49,7 @@
                 <td><img [src]="customer.imageUrl" width="42" height="42" class="rounded-circle" [alt]="customer.name"></td>
                 <td>{{ customer.name }}</td>
                 <td>{{ customer.email }}</td>
+                <td>{{ customer.address }}</td>
                 <td>{{ customer.phone }}</td>
                 <td>
                    <span class="badge"
@@ -61,7 +62,6 @@
                       {{ customer.status }}
                    </span>
                 </td>
-                <td>{{ customer.type }}</td>
                 <td>
 <!--                  <button type="button" [routerLink]="['/customers', customer.id]" class="btn btn-info">View</button>-->
                    <button type="button" (click)="selectCustomer(customer)" class="btn btn-info">View</button>

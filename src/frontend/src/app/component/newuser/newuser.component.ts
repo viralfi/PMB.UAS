@@ -11,10 +11,10 @@ import { CustomerService } from 'src/app/service/customer.service';
 
 @Component({
   selector: 'app-newcustomer',
-  templateUrl: './newcustomer.component.html',
-  styleUrls: ['./newcustomer.component.css']
+  templateUrl: './newuser.component.html',
+  styleUrls: ['./newuser.component.css']
 })
-export class NewcustomerComponent implements OnInit {
+export class NewuserComponent implements OnInit {
   newCustomerState$: Observable<State<CustomHttpResponse<Page<Customer> & User & Stats>>>;
   private dataSubject = new BehaviorSubject<CustomHttpResponse<Page<Customer> & User & Stats>>(null);
   private isLoadingSubject = new BehaviorSubject<boolean>(false);

@@ -1,6 +1,6 @@
-package com.vialfinaz.sisteminforklinik.rowmapper;
+package com.itc.pmb.rowmapper;
 
-import com.vialfinaz.sisteminforklinik.domain.User;
+import com.itc.pmb.domain.User;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
@@ -11,8 +11,7 @@ public class UserRowMapper implements RowMapper<User> {
     public User mapRow(ResultSet resultSet, int rowNum) throws SQLException {
         return User.builder()
                 .id(resultSet.getLong("id"))
-                .firstName(resultSet.getString("first_name"))
-                .lastName(resultSet.getString("last_name"))
+                .fullName(resultSet.getString("full_name"))
                 .email(resultSet.getString("email"))
                 .password(resultSet.getString("password"))
                 .address(resultSet.getString("address"))

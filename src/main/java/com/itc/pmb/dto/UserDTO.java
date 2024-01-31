@@ -1,7 +1,10 @@
-package com.vialfinaz.sisteminforklinik.dto;
+package com.itc.pmb.dto;
 
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 @Setter
@@ -10,8 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class UserDTO {
     private Long id;
-    private String firstName;
-    private String lastName;
+    private String fullName;
     private String email;
     private String address;
     private String phone;

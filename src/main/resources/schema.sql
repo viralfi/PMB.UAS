@@ -1,10 +1,9 @@
-CREATE SCHEMA IF NOT EXISTS user_management;
+CREATE SCHEMA IF NOT EXISTS pmb;
 
 CREATE TABLE Users
 (
     id         BIGSERIAL    NOT NULL PRIMARY KEY,
-    first_name VARCHAR(50)  NOT NULL,
-    last_name  VARCHAR(50)  NOT NULL,
+    full_name VARCHAR(50)   NOT NULL,
     email      VARCHAR(100) NOT NULL,
     password   VARCHAR(255) DEFAULT NULL,
     address    VARCHAR(255) DEFAULT NULL,
@@ -65,7 +64,7 @@ CREATE TABLE AccountVerifications
     id      BIGSERIAL    NOT NULL PRIMARY KEY,
     user_id BIGSERIAL    NOT NULL,
     url     VARCHAR(255) NOT NULL,
-    -- date     TIMESTAMP NOT NULL,
+    date     TIMESTAMP NOT NULL,
     FOREIGN KEY (user_id) REFERENCES Users (id) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT UQ_AccountVerifications_User_Id UNIQUE (user_id),
     CONSTRAINT UQ_AccountVerifications_Url UNIQUE (url)

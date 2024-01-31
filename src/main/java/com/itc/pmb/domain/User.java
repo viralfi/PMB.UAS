@@ -1,4 +1,4 @@
-package com.vialfinaz.sisteminforklinik.domain;
+package com.itc.pmb.domain;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.constraints.Email;
@@ -19,16 +19,14 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_DEFAULT;
 @JsonInclude(NON_DEFAULT)
 public class User {
     private Long id;
-    @NotEmpty(message = "Firs name can not empty")
-    private String firstName;
-    @NotEmpty(message = "Last name can not empty")
-    private String lastName;
-    @NotEmpty(message = "Email can not empty")
+    @NotEmpty(message = "Full name can not empty")
+    private String fullName;
     @Email(message = "Invalid email, Please enter a valid email")
     private String email;
     @NotEmpty(message = "Password can not empty")
     private String password;
     private String address;
+    @NotEmpty(message = "Phone can not empty")
     private String phone;
     private String title;
     private String bio;

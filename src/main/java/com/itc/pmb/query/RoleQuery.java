@@ -1,4 +1,4 @@
-package com.vialfinaz.sisteminforklinik.Query;
+package com.itc.pmb.query;
 
 public class RoleQuery {
     public static final String SELECT_ROLES_QUERY =

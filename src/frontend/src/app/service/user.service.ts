@@ -2,9 +2,10 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {catchError, Observable, tap, throwError} from 'rxjs';
 import {JwtHelperService} from '@auth0/angular-jwt';
-import {AccountType, CustomHttpResponse, Profile} from '../interface/appstates';
+import {AccountType,CustomHttpResponse, Page, Profile} from '../interface/appstates';
 import {User} from '../interface/user';
 import {Key} from '../enum/key.enum';
+import {Stats} from "../interface/stats";
 
 @Injectable({
   providedIn: 'root'
@@ -164,4 +165,34 @@ export class UserService {
     }
     return throwError(() => errorMessage);
   }
+
+  searchUsers$ = (name: string = '', page: number = 0) => <Observable<CustomHttpResponse<Page<User> & User>>>
+    this.http.get<CustomHttpResponse<Page<User> & User>>
+    (`${this.server}/user/search?fullName=${name}&page=${page}`)
+      .pipe(
+        tap(console.log),
+        catchError(this.handleError)
+      );
+  users$ = (page: number = 0) => <Observable<CustomHttpResponse<Page<User> & User & Stats>>>
+    this.http.get<CustomHttpResponse<Page<User> & User & Stats>>
+    (`${this.server}/user/list?page=${page}`)
+      .pipe(
+        tap(console.log),
+        catchError(this.handleError)
+      );
+  // user$ = (userId: number) => <Observable<CustomHttpResponse<UserState>>>
+  //   this.http.get<CustomHttpResponse<UserState>>
+  //   (`${this.server}/user/get/${userId}`)
+  //     .pipe(
+  //       tap(console.log),
+  //       catchError(this.handleError)
+  //     );
+  //
+  newUsers$ = (user: User) => <Observable<CustomHttpResponse<User>>>
+    this.http.post<CustomHttpResponse<User>>
+    (`${this.server}/user/create`, user)
+      .pipe(
+        tap(console.log),
+        catchError(this.handleError)
+      );
 }

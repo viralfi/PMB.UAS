@@ -1,8 +1,8 @@
-package com.vialfinaz.sisteminforklinik.service.implementation;
+package com.itc.pmb.service.implementation;
 
-import com.vialfinaz.sisteminforklinik.Repository.RoleRepository;
-import com.vialfinaz.sisteminforklinik.domain.Role;
-import com.vialfinaz.sisteminforklinik.service.RoleService;
+import com.itc.pmb.repository.RoleRepository;
+import com.itc.pmb.domain.Role;
+import com.itc.pmb.service.RoleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

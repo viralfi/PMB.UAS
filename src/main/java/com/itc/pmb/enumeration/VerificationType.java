@@ -1,4 +1,4 @@
-package com.vialfinaz.sisteminforklinik.Enumeration;
+package com.itc.pmb.enumeration;
 
 public enum VerificationType {
     ACCOUNT("ACCOUNT"),

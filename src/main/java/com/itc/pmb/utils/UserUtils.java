@@ -1,7 +1,7 @@
-package com.vialfinaz.sisteminforklinik.utils;
+package com.itc.pmb.utils;
 
-import com.vialfinaz.sisteminforklinik.domain.UserPrincipal;
-import com.vialfinaz.sisteminforklinik.dto.UserDTO;
+import com.itc.pmb.domain.UserPrincipal;
+import com.itc.pmb.dto.UserDTO;
 import org.springframework.security.core.Authentication;
 
 public class UserUtils {

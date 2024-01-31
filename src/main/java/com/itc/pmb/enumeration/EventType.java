@@ -1,4 +1,4 @@
-package com.vialfinaz.sisteminforklinik.Enumeration;
+package com.itc.pmb.enumeration;
 
 public enum EventType {
     LOGIN_ATTEMPT("You tried to log in"),
@@ -12,6 +12,7 @@ public enum EventType {
     PASSWORD_UPDATE("You update your password");
 
     private final String description;
+
     EventType(String description) {
         this.description = description;
     }

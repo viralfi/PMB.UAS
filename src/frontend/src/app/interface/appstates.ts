@@ -3,6 +3,7 @@ import {User} from "./user";
 import {Events} from "./event";
 import {Role} from "./role";
 import {Customer} from "./customer";
+import {Product} from "./product";
 
 export interface LoginState {
   dataState: DataState;
@@ -63,3 +64,7 @@ export interface VerifySate {
   type?: AccountType;
 }
 
+export interface ProductState {
+  user: User;
+  product: Product;
+}

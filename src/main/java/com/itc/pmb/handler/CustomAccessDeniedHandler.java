@@ -1,8 +1,8 @@
-package com.vialfinaz.sisteminforklinik.handler;
+package com.itc.pmb.handler;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.vialfinaz.sisteminforklinik.domain.HttpResponse;
+import com.itc.pmb.domain.HttpResponse;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

@@ -1,9 +1,9 @@
-package com.vialfinaz.sisteminforklinik.Repository.implementation;
+package com.itc.pmb.repository.implementation;
 
-import com.vialfinaz.sisteminforklinik.Enumeration.EventType;
-import com.vialfinaz.sisteminforklinik.Repository.EventRepository;
-import com.vialfinaz.sisteminforklinik.domain.UserEvent;
-import com.vialfinaz.sisteminforklinik.rowmapper.UserEventRowMapper;
+import com.itc.pmb.enumeration.EventType;
+import com.itc.pmb.repository.EventRepository;
+import com.itc.pmb.domain.UserEvent;
+import com.itc.pmb.rowmapper.UserEventRowMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -11,8 +11,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 
-import static com.vialfinaz.sisteminforklinik.Query.EventQuery.INSERT_EVENT_BY_USER_EMAIL_QUERY;
-import static com.vialfinaz.sisteminforklinik.Query.EventQuery.SELECT_EVENTS_BY_USER_ID_QUERY;
+import static com.itc.pmb.query.EventQuery.INSERT_EVENT_BY_USER_EMAIL_QUERY;
+import static com.itc.pmb.query.EventQuery.SELECT_EVENTS_BY_USER_ID_QUERY;
 import static java.util.Map.of;
 
 @Repository

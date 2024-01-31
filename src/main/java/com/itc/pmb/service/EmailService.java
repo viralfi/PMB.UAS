@@ -1,9 +1,9 @@
-package com.vialfinaz.sisteminforklinik.service;
+package com.itc.pmb.service;
 
-import com.vialfinaz.sisteminforklinik.Enumeration.VerificationType;
+import com.itc.pmb.enumeration.VerificationType;
 
 public interface EmailService {
-    void sendVerificationEmail(String firstName,
+    void sendVerificationEmail(String fullName,
                                String email,
                                String verificationUrl,
                                VerificationType verificationType);

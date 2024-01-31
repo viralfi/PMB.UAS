@@ -70,5 +70,4 @@ export class CustomerComponent implements OnInit {
         })
       )
   }
-
 }

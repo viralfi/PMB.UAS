@@ -1,4 +1,4 @@
-package com.vialfinaz.sisteminforklinik.utils;
+package com.itc.pmb.utils;
 
 import jakarta.servlet.http.HttpServletRequest;
 import nl.basjes.parse.useragent.UserAgent;

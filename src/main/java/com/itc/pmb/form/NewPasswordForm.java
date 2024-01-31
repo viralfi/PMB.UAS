@@ -1,4 +1,4 @@
-package com.vialfinaz.sisteminforklinik.form;
+package com.itc.pmb.form;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;

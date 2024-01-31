@@ -1,7 +1,7 @@
-package com.vialfinaz.sisteminforklinik.exception;
+package com.itc.pmb.exception;
 
 import com.auth0.jwt.exceptions.JWTDecodeException;
-import com.vialfinaz.sisteminforklinik.domain.HttpResponse;
+import com.itc.pmb.domain.HttpResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.dao.DataAccessException;

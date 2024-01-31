@@ -15,13 +15,17 @@ import { CustomersComponent } from './component/customers/customers.component';
 import { StatsComponent } from './component/stats/stats.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import {TokenInterceptor} from "./interceptor/token.interceptor";
-import { InvoicesComponent } from './component/invoices/invoices.component';
-import { NewinvoiceComponent } from './component/newinvoice/newinvoice.component';
 import { CustomerComponent } from './component/customer/customer.component';
-import { InvoiceComponent } from './component/invoice/invoice.component';
 import { NewcustomerComponent } from './component/newcustomer/newcustomer.component';
 import {ExtractArrayValue} from "./pipes/extractvalue.pipe";
 import {CacheInterceptor} from "./interceptor/cache.interceptor";
+import {NewuserComponent} from "./component/newuser/newuser.component";
+import { ProductsComponent } from './component/products/products.component';
+import { NewproductComponent } from './component/newproduct/newproduct.component';
+import {InvoiceComponent} from "./component/invoice/invoice.component";
+import {InvoicesComponent} from "./component/invoices/invoices.component";
+import {NewinvoiceComponent} from "./component/newinvoice/newinvoice.component";
+import { ProductComponent } from './component/product/product.component';
 
 @NgModule({
   declarations: [
@@ -35,12 +39,19 @@ import {CacheInterceptor} from "./interceptor/cache.interceptor";
     CustomersComponent,
     StatsComponent,
     NavbarComponent,
-    InvoicesComponent,
-    NewinvoiceComponent,
     CustomerComponent,
-    InvoiceComponent,
     NewcustomerComponent,
-    ExtractArrayValue
+    NewuserComponent,
+    NewproductComponent,
+    NewinvoiceComponent,
+    ProductsComponent,
+    InvoiceComponent,
+    InvoicesComponent,
+    ExtractArrayValue,
+    ProductsComponent,
+    ProductComponent,
+    NewproductComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,6 @@
-package com.vialfinaz.sisteminforklinik.rowmapper;
+package com.itc.pmb.rowmapper;
 
-import com.vialfinaz.sisteminforklinik.domain.Role;
+import com.itc.pmb.domain.Role;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

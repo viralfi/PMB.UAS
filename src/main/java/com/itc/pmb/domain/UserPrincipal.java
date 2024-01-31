@@ -1,6 +1,6 @@
-package com.vialfinaz.sisteminforklinik.domain;
+package com.itc.pmb.domain;
 
-import com.vialfinaz.sisteminforklinik.dto.UserDTO;
+import com.itc.pmb.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
-import static com.vialfinaz.sisteminforklinik.dtomapper.UserDTOMapper.fromUser;
+import static com.itc.pmb.dtomapper.UserDTOMapper.fromUser;
 import static java.util.Arrays.stream;
 import static java.util.stream.Collectors.toList;
 

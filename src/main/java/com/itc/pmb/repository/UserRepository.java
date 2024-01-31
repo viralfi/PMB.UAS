@@ -1,8 +1,8 @@
-package com.vialfinaz.sisteminforklinik.Repository;
+package com.itc.pmb.repository;
 
-import com.vialfinaz.sisteminforklinik.domain.User;
-import com.vialfinaz.sisteminforklinik.dto.UserDTO;
-import com.vialfinaz.sisteminforklinik.form.UpdateForm;
+import com.itc.pmb.domain.User;
+import com.itc.pmb.dto.UserDTO;
+import com.itc.pmb.form.UpdateForm;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Collection;

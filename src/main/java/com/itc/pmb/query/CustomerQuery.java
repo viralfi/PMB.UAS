@@ -1,10 +1,10 @@
-package com.vialfinaz.sisteminforklinik.Query;
+package com.itc.pmb.query;
 
 public class CustomerQuery {
     public static final String STATS_QUERY =
-            "SELECT c.total_customers, i.total_invoices, inv.total_billed " +
+            "SELECT c.total_customers, i.total_products, inv.total_billed " +
                     "FROM " +
                     "(SELECT COUNT(*) total_customers FROM customer) c, " +
-                    "(SELECT COUNT(*) total_invoices FROM invoice) i, " +
+                    "(SELECT COUNT(*) total_products FROM product) i, " +
                     "(SELECT ROUND(SUM(total)) total_billed FROM invoice) inv;";
 }

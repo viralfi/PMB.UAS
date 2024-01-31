@@ -1,6 +1,6 @@
-package com.vialfinaz.sisteminforklinik.filter;
+package com.itc.pmb.filter;
 
-import com.vialfinaz.sisteminforklinik.provider.TokenProvider;
+import com.itc.pmb.provider.TokenProvider;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,11 +15,9 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
-import static com.vialfinaz.sisteminforklinik.utils.ExceptionUtils.processError;
+import static com.itc.pmb.utils.ExceptionUtils.processError;
 import static java.util.Arrays.asList;
-import static java.util.Map.of;
 import static java.util.Optional.ofNullable;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;

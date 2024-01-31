@@ -1,6 +1,6 @@
-package com.vialfinaz.sisteminforklinik.service;
+package com.itc.pmb.service;
 
-import com.vialfinaz.sisteminforklinik.domain.Role;
+import com.itc.pmb.domain.Role;
 
 import java.util.Collection;
 

@@ -1,10 +1,10 @@
-package com.vialfinaz.sisteminforklinik.utils;
+package com.itc.pmb.utils;
 
+import com.auth0.jwt.exceptions.InvalidClaimException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.vialfinaz.sisteminforklinik.exception.ApiException;
-import com.vialfinaz.sisteminforklinik.domain.HttpResponse;
-import com.auth0.jwt.exceptions.InvalidClaimException;
+import com.itc.pmb.domain.HttpResponse;
+import com.itc.pmb.exception.ApiException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -16,7 +16,8 @@ import org.springframework.security.authentication.LockedException;
 import java.io.OutputStream;
 
 import static java.time.LocalDateTime.now;
-import static org.springframework.http.HttpStatus.*;
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
+import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 

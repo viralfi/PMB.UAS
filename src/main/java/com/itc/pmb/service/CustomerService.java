@@ -1,9 +1,9 @@
-package com.vialfinaz.sisteminforklinik.service;
+package com.itc.pmb.service;
 
-import com.vialfinaz.sisteminforklinik.domain.Invoice;
-import com.vialfinaz.sisteminforklinik.domain.Stats;
+import com.itc.pmb.domain.Customer;
+import com.itc.pmb.domain.Invoice;
+import com.itc.pmb.domain.Stats;
 import org.springframework.data.domain.Page;
-import com.vialfinaz.sisteminforklinik.domain.Customer;
 
 public interface CustomerService {
     // Customer functions
@@ -18,8 +18,6 @@ public interface CustomerService {
     Customer getCustomer(Long id);
 
     Page<Customer> searchCustomers(String name, int page, int size);
-
-    // Invoice functions
     Invoice createInvoice(Invoice invoice);
 
     Page<Invoice> getInvoices(int page, int size);
@@ -27,6 +25,7 @@ public interface CustomerService {
     void addInvoiceToCustomer(Long id, Invoice invoice);
 
     Invoice getInvoice(Long id);
-
     Stats getState();
+
+    // Invoice functions
 }

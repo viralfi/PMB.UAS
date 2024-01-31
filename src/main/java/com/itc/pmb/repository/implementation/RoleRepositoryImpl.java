@@ -1,11 +1,9 @@
-package com.vialfinaz.sisteminforklinik.Repository.implementation;
+package com.itc.pmb.repository.implementation;
 
-import com.vialfinaz.sisteminforklinik.domain.User;
-import com.vialfinaz.sisteminforklinik.exception.ApiException;
-import com.vialfinaz.sisteminforklinik.Repository.RoleRepository;
-import com.vialfinaz.sisteminforklinik.domain.Role;
-import com.vialfinaz.sisteminforklinik.form.UpdateForm;
-import com.vialfinaz.sisteminforklinik.rowmapper.RoleRowMapper;
+import com.itc.pmb.repository.RoleRepository;
+import com.itc.pmb.domain.Role;
+import com.itc.pmb.exception.ApiException;
+import com.itc.pmb.rowmapper.RoleRowMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -14,10 +12,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 
-import static com.vialfinaz.sisteminforklinik.Enumeration.RoleType.ROLE_USER;
-import static com.vialfinaz.sisteminforklinik.Query.RoleQuery.*;
-import static java.util.Objects.requireNonNull;
+import static com.itc.pmb.enumeration.RoleType.ROLE_USERS;
+import static com.itc.pmb.query.RoleQuery.*;
 import static java.util.Map.of;
+import static java.util.Objects.requireNonNull;
 @Repository
 @RequiredArgsConstructor
 @Slf4j
@@ -62,7 +60,7 @@ public class RoleRepositoryImpl implements RoleRepository<Role> {
             Role role = jdbc.queryForObject(SELECT_ROLE_BY_NAME_QUERY, of("name", roleName), new RoleRowMapper());
             jdbc.update(INSERT_ROLE_TO_USER_QUERY, of("userId", userId, "roleId", requireNonNull(role).getId()));
         } catch (EmptyResultDataAccessException exception) {
-            throw new ApiException("No role found by name: " + ROLE_USER.name());
+            throw new ApiException("No role found by name: " + ROLE_USERS.name());
 
         } catch (Exception exception) {
             log.error(exception.getMessage());
@@ -76,7 +74,7 @@ public class RoleRepositoryImpl implements RoleRepository<Role> {
         try {
             return jdbc.queryForObject(SELECT_ROLE_BY_ID_QUERY, of("id", userId), new RoleRowMapper());
         } catch (EmptyResultDataAccessException exception) {
-            throw new ApiException("No role found by name: " + ROLE_USER.name());
+            throw new ApiException("No role found by name: " + ROLE_USERS.name());
         } catch (Exception exception) {
             log.error(exception.getMessage());
             throw new ApiException("An error occurred. Please try again.");

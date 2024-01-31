@@ -1,7 +1,7 @@
-package com.vialfinaz.sisteminforklinik.service;
+package com.itc.pmb.service;
 
-import com.vialfinaz.sisteminforklinik.Enumeration.EventType;
-import com.vialfinaz.sisteminforklinik.domain.UserEvent;
+import com.itc.pmb.enumeration.EventType;
+import com.itc.pmb.domain.UserEvent;
 
 import java.util.Collection;
 

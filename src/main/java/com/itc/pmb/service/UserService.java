@@ -1,9 +1,8 @@
-package com.vialfinaz.sisteminforklinik.service;
+package com.itc.pmb.service;
 
-import com.vialfinaz.sisteminforklinik.domain.User;
-import com.vialfinaz.sisteminforklinik.dto.UserDTO;
-import com.vialfinaz.sisteminforklinik.form.UpdateForm;
-import org.apache.logging.log4j.Logger;
+import com.itc.pmb.domain.User;
+import com.itc.pmb.dto.UserDTO;
+import com.itc.pmb.form.UpdateForm;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface UserService {
@@ -37,4 +36,5 @@ public interface UserService {
     UserDTO toggleMfa(String email);
 
     void updateImage(UserDTO user, MultipartFile image);
+
 }

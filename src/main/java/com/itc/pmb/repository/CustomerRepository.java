@@ -1,4 +1,4 @@
-package com.itc.pmb.repository.implementation;
+package com.itc.pmb.repository;
 
 
 import com.itc.pmb.domain.Customer;

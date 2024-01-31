@@ -12,31 +12,29 @@
             </div>
           </div>
           <div class="col">
-            <h4 class="fw-bold text-start">Customers</h4>
+            <h4 class="fw-bold text-start">Data Customer</h4>
           </div>
-          <div class="col">
-            <h4 (click)="report()" class="fw-bold text-end"><i class="bi bi-file-earmark-excel" style="cursor: pointer;color: green;font-size: 30px;"></i></h4>
-          </div>
+<!--          <div class="col">-->
+<!--            <h4 (click)="report()" class="fw-bold text-end"><i class="bi bi-file-earmark-excel" style="cursor: pointer;color: green;font-size: 30px;"></i></h4>-->
+<!--          </div>-->
           <div class="col-xm-12">
-            <table class="table table-hover">
+            <table class="table1 table-hover">
               <thead>
               <tr>
                 <th class="text-center" scope="col">ID</th>
-                <th scope="col">Photo</th>
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
+                <th scope="col">Alamat</th>
                 <th scope="col">Phone</th>
                 <th scope="col">Status</th>
-                <th scope="col">Type</th>
-                <th scope="col">Action</th>
               </tr>
               </thead>
               <tbody class="table-body">
               <tr *ngFor="let customer of state?.appData?.data?.page.content" class="cell-1">
                 <th class="text-center">{{ customer.id }}</th>
-                <td><img [src]="customer.imageUrl" width="42" height="42" class="rounded-circle" [alt]="customer.name"></td>
                 <td>{{ customer.name }}</td>
                 <td>{{ customer.email }}</td>
+                <td>{{ customer.address }}</td>
                 <td>{{ customer.phone }}</td>
                 <td>
                                <span class="badge"
@@ -48,10 +46,6 @@
                                >
                                   {{ customer.status }}
                                </span>
-                </td>
-                <td>{{ customer.type }}</td>
-                <td>
-                  <button type="button" (click)="selectCustomer(customer)" class="btn btn-info">View</button>
                 </td>
               </tr>
               </tbody>

@@ -1,6 +1,6 @@
-package com.vialfinaz.sisteminforklinik.event;
+package com.itc.pmb.event;
 
-import com.vialfinaz.sisteminforklinik.Enumeration.EventType;
+import com.itc.pmb.enumeration.EventType;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.context.ApplicationEvent;

@@ -1,69 +1,68 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpEvent, HttpHeaders} from '@angular/common/http';
 import { catchError, Observable, tap, throwError } from 'rxjs';
-import {CustomerState, CustomHttpResponse, Page, Profile} from '../interface/appstates';
+import {ProductState, CustomHttpResponse, Page, Profile} from '../interface/appstates';
 import { User } from '../interface/user';
 import { Key } from '../enum/key.enum';
 import {Stats} from "../interface/stats";
-import {Customer} from "../interface/customer";
+import {Product} from "../interface/product";
 import {Invoice} from "../interface/invoice";
 
 @Injectable({ providedIn: 'root' })
-export class CustomerService {
+export class ProductService {
   private readonly server: string = 'http://localhost:8080';
 
   constructor(private http: HttpClient) { }
 
-  customers$ = (page: number = 0) => <Observable<CustomHttpResponse<Page<Customer> & User & Stats>>>
-    this.http.get<CustomHttpResponse<Page<Customer> & User & Stats>>
-    (`${this.server}/customer/list?page=${page}`)
+  products$ = (page: number = 0) => <Observable<CustomHttpResponse<Page<Product> & User & Stats>>>
+    this.http.get<CustomHttpResponse<Page<Product> & User & Stats>>
+    (`${this.server}/product/listProduct?page=${page}`)
       .pipe(
         tap(console.log),
         catchError(this.handleError)
       );
-  customer$ = (customerId: number) => <Observable<CustomHttpResponse<CustomerState>>>
-    this.http.get<CustomHttpResponse<CustomerState>>
-    (`${this.server}/customer/get/${customerId}`)
-      .pipe(
-        tap(console.log),
-        catchError(this.handleError)
-      );
-
-  update$ = (customer: Customer) => <Observable<CustomHttpResponse<CustomerState>>>
-    this.http.put<CustomHttpResponse<CustomerState>>
-    (`${this.server}/customer/update`, customer)
+  product$ = (productId: number) => <Observable<CustomHttpResponse<ProductState>>>
+    this.http.get<CustomHttpResponse<ProductState>>
+    (`${this.server}/product/get/${productId}`)
       .pipe(
         tap(console.log),
         catchError(this.handleError)
       );
 
-  newCustomers$ = (customer: Customer) => <Observable<CustomHttpResponse<Customer & User>>>
-    this.http.post<CustomHttpResponse<Customer & User>>
-    (`${this.server}/customer/create`, customer)
+  update$ = (product: Product) => <Observable<CustomHttpResponse<ProductState>>>
+    this.http.put<CustomHttpResponse<ProductState>>
+    (`${this.server}/product/updateProduct`, product)
       .pipe(
         tap(console.log),
         catchError(this.handleError)
       );
 
-  searchCustomers$ = (name: string = '', page: number = 0) => <Observable<CustomHttpResponse<Page<Customer> & User>>>
-    this.http.get<CustomHttpResponse<Page<Customer> & User>>
-    (`${this.server}/customer/search?name=${name}&page=${page}`)
+  newProducts$ = (product: Product) => <Observable<CustomHttpResponse<Product & User>>>
+    this.http.post<CustomHttpResponse<Product & User>>
+    (`${this.server}/product/createProduct`, product)
       .pipe(
         tap(console.log),
         catchError(this.handleError)
       );
 
-  newInvoice$ = () => <Observable<CustomHttpResponse<Customer[] & User>>>
-    this.http.get<CustomHttpResponse<Customer[] & User>>
-    (`${this.server}/customer/invoice/new`)
+  searchProducts$ = (name: string = '', page: number = 0) => <Observable<CustomHttpResponse<Page<Product> & User>>>
+    this.http.get<CustomHttpResponse<Page<Product> & User>>
+    (`${this.server}/product/searchProduct?name=${name}&page=${page}`)
+      .pipe(
+        tap(console.log),
+        catchError(this.handleError)
+      );
+  newInvoice$ = () => <Observable<CustomHttpResponse<Product[] & User>>>
+    this.http.get<CustomHttpResponse<Product[] & User>>
+    (`${this.server}/product/invoice/new`)
       .pipe(
         tap(console.log),
         catchError(this.handleError)
       );
 
-  createInvoice$ = (customerId: number, invoice: Invoice) => <Observable<CustomHttpResponse<Customer[] & User>>>
-    this.http.post<CustomHttpResponse<Customer[] & User>>
-    (`${this.server}/customer/invoice/addtocustomer/${customerId}`, invoice)
+  createInvoice$ = (productId: number, invoice: Invoice) => <Observable<CustomHttpResponse<Product[] & User>>>
+    this.http.post<CustomHttpResponse<Product[] & User>>
+    (`${this.server}/product/invoice/addtoproduct/${productId}`, invoice)
       .pipe(
         tap(console.log),
         catchError(this.handleError)
@@ -71,34 +70,29 @@ export class CustomerService {
 
   invoices$ = (page: number = 0) => <Observable<CustomHttpResponse<Page<Invoice> & User>>>
     this.http.get<CustomHttpResponse<Page<Invoice> & User>>
-    (`${this.server}/customer/invoice/list?page=${page}`)
+    (`${this.server}/product/invoice/list?page=${page}`)
       .pipe(
         tap(console.log),
         catchError(this.handleError)
       );
 
-  invoice$ = (invoiceId: number) => <Observable<CustomHttpResponse<Customer & Invoice & User>>>
-    this.http.get<CustomHttpResponse<Customer & Invoice & User>>
-    (`${this.server}/customer/invoice/get/${invoiceId}`)
+  invoice$ = (invoiceId: number) => <Observable<CustomHttpResponse<Product & Invoice & User>>>
+    this.http.get<CustomHttpResponse<Product & Invoice & User>>
+    (`${this.server}/product/invoice/get/${invoiceId}`)
       .pipe(
         tap(console.log),
         catchError(this.handleError)
       );
-  downloadCustomers$ = () => <Observable<HttpEvent<Blob>>>
-    this.http.get(`${this.server}/customer/download/customers`,
+
+
+  downloadProducts$ = () => <Observable<HttpEvent<Blob>>>
+    this.http.get(`${this.server}/product/download/product`,
       { reportProgress: true, observe: 'events', responseType: 'blob' })
       .pipe(
         tap(console.log),
         catchError(this.handleError)
       );
 
-  downloadInvoices$ = () => <Observable<HttpEvent<Blob>>>
-    this.http.get(`${this.server}/customer/download/invoices`,
-      { reportProgress: true, observe: 'events', responseType: 'blob' })
-      .pipe(
-        tap(console.log),
-        catchError(this.handleError)
-      );
 
 
   private handleError(error: HttpErrorResponse): Observable<never> {

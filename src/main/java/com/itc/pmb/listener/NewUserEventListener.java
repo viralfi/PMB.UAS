@@ -1,14 +1,14 @@
-package com.vialfinaz.sisteminforklinik.listener;
+package com.itc.pmb.listener;
 
-import com.vialfinaz.sisteminforklinik.event.NewUserEvent;
-import com.vialfinaz.sisteminforklinik.service.EventService;
+import com.itc.pmb.event.NewUserEvent;
+import com.itc.pmb.service.EventService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
-import static com.vialfinaz.sisteminforklinik.utils.RequestUtils.getDevice;
-import static com.vialfinaz.sisteminforklinik.utils.RequestUtils.getIpAddress;
+import static com.itc.pmb.utils.RequestUtils.getDevice;
+import static com.itc.pmb.utils.RequestUtils.getIpAddress;
 
 @Component
 @RequiredArgsConstructor

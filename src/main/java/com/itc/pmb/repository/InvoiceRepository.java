@@ -1,6 +1,6 @@
-package com.vialfinaz.sisteminforklinik.Repository;
+package com.itc.pmb.repository;
 
-import com.vialfinaz.sisteminforklinik.domain.Invoice;
+import com.itc.pmb.domain.Invoice;
 import org.springframework.data.repository.ListCrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 

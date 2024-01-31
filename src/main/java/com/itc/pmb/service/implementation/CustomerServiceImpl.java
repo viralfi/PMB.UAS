@@ -1,12 +1,12 @@
-package com.vialfinaz.sisteminforklinik.service.implementation;
+package com.itc.pmb.service.implementation;
 
-import com.vialfinaz.sisteminforklinik.Repository.InvoiceRepository;
-import com.vialfinaz.sisteminforklinik.Repository.implementation.CustomerRepository;
-import com.vialfinaz.sisteminforklinik.domain.Customer;
-import com.vialfinaz.sisteminforklinik.domain.Invoice;
-import com.vialfinaz.sisteminforklinik.domain.Stats;
-import com.vialfinaz.sisteminforklinik.rowmapper.StatsRowMapper;
-import com.vialfinaz.sisteminforklinik.service.CustomerService;
+import com.itc.pmb.domain.Invoice;
+import com.itc.pmb.domain.Stats;
+import com.itc.pmb.repository.CustomerRepository;
+import com.itc.pmb.domain.Customer;
+import com.itc.pmb.repository.InvoiceRepository;
+import com.itc.pmb.rowmapper.StatsRowMapper;
+import com.itc.pmb.service.CustomerService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.Map;
 
-import static com.vialfinaz.sisteminforklinik.Query.CustomerQuery.STATS_QUERY;
+import static com.itc.pmb.query.CustomerQuery.STATS_QUERY;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric;
 import static org.springframework.data.domain.PageRequest.of;
 
@@ -63,7 +63,6 @@ public class CustomerServiceImpl implements CustomerService {
     public Page<Customer> searchCustomers(String name, int page, int size) {
         return customerRepository.findByNameContaining(name, of(page, size));
     }
-
     @Override
     public Invoice createInvoice(Invoice invoice) {
         invoice.setInvoiceNumber(randomAlphanumeric(8).toUpperCase());
@@ -88,8 +87,10 @@ public class CustomerServiceImpl implements CustomerService {
         return invoiceRepository.findById(id).get();
     }
 
+
     @Override
     public Stats getState() {
         return jdbc.queryForObject(STATS_QUERY, Map.of(), new StatsRowMapper());
     }
+
 }

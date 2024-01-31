@@ -1,8 +1,8 @@
-package com.vialfinaz.sisteminforklinik.configuration;
+package com.itc.pmb.configuration;
 
-import com.vialfinaz.sisteminforklinik.filter.CustomAuthorizationFilter;
-import com.vialfinaz.sisteminforklinik.handler.CustomAccessDeniedHandler;
-import com.vialfinaz.sisteminforklinik.handler.CustomAuthenticationEntryPoint;
+import com.itc.pmb.filter.CustomAuthorizationFilter;
+import com.itc.pmb.handler.CustomAccessDeniedHandler;
+import com.itc.pmb.handler.CustomAuthenticationEntryPoint;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

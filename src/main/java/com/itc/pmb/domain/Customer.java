@@ -1,4 +1,4 @@
-package com.vialfinaz.sisteminforklinik.domain;
+package com.itc.pmb.domain;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.Entity;
@@ -10,7 +10,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
-import org.springframework.data.repository.cdi.Eager;
 
 import java.util.Collection;
 import java.util.Date;
@@ -39,6 +38,4 @@ public class Customer {
     private String phone;
     private String imageUrl;
     private Date createdAt;
-    @OneToMany(mappedBy = "customer", fetch = EAGER, cascade = ALL)
-    private Collection<Invoice> invoices;
 }

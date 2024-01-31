@@ -1,4 +1,4 @@
-package com.vialfinaz.sisteminforklinik.Query;
+package com.itc.pmb.query;
 
 public class UserQuery {
     public static final String COUNT_USER_EMAIL_QUERY =
@@ -7,19 +7,31 @@ public class UserQuery {
                     "WHERE email = :email";
     public static final String INSERT_USER_QUERY =
             "INSERT INTO Users " +
-                    "(first_name, last_name, email, password)" +
+                    "(full_name, phone, email, password)" +
                     " VALUES " +
-                    "(:firstName, :lastName, :email, :password)";
+                    "(:fullName, :phone, :email, :password)";
     public static final String INSERT_ACCOUNT_VERIFICATION_URL_QUERY =
             "INSERT INTO AccountVerifications " +
                     "(user_id, url, date) " +
                     "VALUES " +
                     "(:userId, :url, :date)";
 
-    public static final String SELECT_USER_BY_EMAIL_QUERY = "SELECT * FROM Users WHERE email = :email";
-    public static final String DELETE_VERIFICATION_CODE_BY_USER_ID = "DELETE FROM TwoFactorVerifications WHERE user_id = :id";
-    public static final String INSERT_VERIFICATION_CODE_QUERY = "INSERT INTO twoFactorVerifications (user_id, code, expiration_date) VALUES (:userId, :code, :expirationDate)";
-    public static final String SELECT_USER_BY_USER_CODE_QUERY = "SELECT * FROM Users WHERE id = (SELECT user_id FROM TwoFactorVerifications WHERE code = :code)";
+    public static final String SELECT_USER_BY_EMAIL_QUERY =
+            "SELECT * FROM Users " +
+                    "WHERE " +
+                    "email = :email";
+    public static final String DELETE_VERIFICATION_CODE_BY_USER_ID =
+            "DELETE FROM TwoFactorVerifications WHERE user_id = :id";
+    public static final String INSERT_VERIFICATION_CODE_QUERY =
+            "INSERT INTO twoFactorVerifications " +
+                    "(user_id, code, expiration_date) " +
+                    "VALUES " +
+                    "(:userId, :code, :expirationDate)";
+    public static final String SELECT_USER_BY_USER_CODE_QUERY =
+            "SELECT * FROM Users " +
+                    "WHERE " +
+                    "id = (SELECT user_id " +
+                    "FROM TwoFactorVerifications WHERE code = :code)";
     public static final String DELETE_CODE = "DELETE FROM TwoFactorVerifications WHERE code = :code";
     public static final String SELECT_CODE_EXPIRATION_QUERY = "SELECT expiration_date < NOW() AS is_expired FROM TwoFactorVerifications WHERE code = :code";
     public static final String DELETE_PASSWORD_VERIFICATION_BY_USER_ID_QUERY =
@@ -58,7 +70,7 @@ public class UserQuery {
     public static final String UPDATE_USER_DETAILS_QUERY =
             "UPDATE Users " +
                     "SET " +
-                    "first_name = :firstName, last_name = :lastName, email = :email, " +
+                    "full_name = :fullName,  email = :email, " +
                     "phone = :phone, address = :address, title = :title, bio = :bio " +
                     "WHERE id = :id";
     public static final String SELECT_USER_BY_ID_QUERY =
@@ -84,5 +96,8 @@ public class UserQuery {
             "UPDATE Users " +
                     "SET password = :password " +
                     "WHERE id = :id";
-
+    public static final String COUNT_USER_PHONE_QUERY =
+            "SELECT COUNT(*) FROM Users " +
+                    "WHERE " +
+                    "phone = :phone";
 }

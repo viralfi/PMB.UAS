@@ -1,17 +1,17 @@
-package com.vialfinaz.sisteminforklinik.service.implementation;
+package com.itc.pmb.service.implementation;
 
-import com.vialfinaz.sisteminforklinik.Repository.RoleRepository;
-import com.vialfinaz.sisteminforklinik.Repository.UserRepository;
-import com.vialfinaz.sisteminforklinik.domain.Role;
-import com.vialfinaz.sisteminforklinik.domain.User;
-import com.vialfinaz.sisteminforklinik.dto.UserDTO;
-import com.vialfinaz.sisteminforklinik.form.UpdateForm;
-import com.vialfinaz.sisteminforklinik.service.UserService;
+import com.itc.pmb.repository.RoleRepository;
+import com.itc.pmb.repository.UserRepository;
+import com.itc.pmb.domain.Role;
+import com.itc.pmb.domain.User;
+import com.itc.pmb.dto.UserDTO;
+import com.itc.pmb.form.UpdateForm;
+import com.itc.pmb.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import static com.vialfinaz.sisteminforklinik.dtomapper.UserDTOMapper.fromUser;
+import static com.itc.pmb.dtomapper.UserDTOMapper.fromUser;
 
 @Service
 @RequiredArgsConstructor
@@ -21,6 +21,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO createUser(User user) {
+        validateFullname(user.getFullName());
+        validatePassword(user.getPassword());
         return mapToUserDTO(userRepository.create(user));
     }
 
@@ -102,5 +104,21 @@ public class UserServiceImpl implements UserService {
 
     private UserDTO mapToUserDTO(User user) {
         return fromUser(user, roleRoleRepository.getRoleByUserId(user.getId()));
+    }
+    private void validatePassword(String password) {
+        // Memastikan panjang password minimal 5 karakter
+        if (password.length() < 5 || !containsLatterAndDigit(password)) {
+            throw new IllegalArgumentException("Password tidak valid.");
+        }
+    }
+
+    private static boolean containsLatterAndDigit(String password) {
+        return password.matches(".*[a-zA-Z].*") && password.matches(".*\\d.*");
+    }
+
+    private void validateFullname(String fullname) {
+        if (fullname.length() <= 2 ) {
+            throw new IllegalArgumentException("fullname tidak valid. Tolong masukan minimal 3 huruf");
+        }
     }
 }
