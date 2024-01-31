@@ -1,0 +1,60 @@
+jwt:
+  secret: mysupercomplexsecret
+
+server:
+  error:
+    path: /user/error
+    whitelabel:
+      enabled: false
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/customer
+    username: postgres
+    password: 12345678
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        globally_quoted_identifiers: true
+        format_sql: true
+    show-sql: true
+    database-platform: org.hibernate.dialect.posgreSQLDialect
+    generate-ddl: true
+
+  sql:
+    init:
+      mode: never
+      continue-on-error: false
+  main:
+    web-application-type: servlet
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  codec:
+    max-in-memory-size: 10MB
+
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: vialfi14@gmail.com
+    password: fwvfhcbiiqkjpwls
+    properties:
+      mail:
+        smtp:
+          writetimeout: 5000
+          connectiontimeout: 5000
+          timeout: 5000
+          auth: true
+          ssl:
+            protocols: TLSv1.2
+            trust: smtp.gmail.com
+          starttls:
+            enable: true
+            required: true
+
