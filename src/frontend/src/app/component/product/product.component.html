@@ -15,11 +15,19 @@
             <div class="card">
               <div class="card-body">
                 <div class="d-flex align-items-start">
-                  <img [src]="state?.appData?.data?.product.imageUrl" alt="profile-image"
-                       class="rounded-circle avatar-lg img-thumbnail" style="position: relative">
+                  <div class="profile-tab-nav border-right">
+                    <div class="p-4">
+                      <div class="img-circle text-center mb-3">
+                         <span style="position: relative">
+                             <img [src]="state?.appData?.data?.product?.imageUrl" alt="product" class="shadow"/>
+                           <!--                            <img src="https://img.freepik.com/free-icon/user_318-159711.jpg" alt="John" class="shadow" />-->
+                         <i (click)="fileInput.click()" class="bi bi-camera-fill right-position"></i>
+                         </span>
+                      </div>
+                    </div>
+                  </div>
                   <div class="w-100 ms-4">
                     <h4 class="my-0">{{ state?.appData?.data?.product.name }}</h4>
-                    <p class="" style="font-size: 13px;">{{ state?.appData?.data?.product.email }}</p>
                   </div>
                 </div>
               </div>
@@ -32,20 +40,25 @@
                 <form #productForm="ngForm" (ngSubmit)="updateProduct(productForm)">
                   <input [disabled]="state?.appData?.data?.user.roleName === 'ROLE_USER' || (isLoading$ | async)" [ngModel]="state?.appData?.data?.product.id" name="id"
                          type="hidden">
-                  <input [disabled]="state?.appData?.data?.user.roleName === 'ROLE_USER' || (isLoading$ | async)" [ngModel]="state?.appData?.data?.product.createdAt" name="createdAt"
+                  <input [disabled]="state?.appData?.data?.user.roleName === 'ROLE_USER' || (isLoading$ | async)"
+                         [ngModel]="state?.appData?.data?.product.createdAt" name="createdAt"
                          type="hidden">
                   <div class="row mb-3">
                     <label class="col-sm-3 col-form-label" for="name">Name</label>
                     <div class="col-sm-9">
-                      <input [disabled]="state?.appData?.data?.user.roleName === 'ROLE_USER' || (isLoading$ | async)" [ngModel]="state?.appData?.data?.product.name" class="form-control"
+                      <input [checked]="state.appData?.data?.user?.enabled"
+                        [disabled]="!(state?.appData?.data?.user?.roleName === 'ROLE_SYSADMIN') || (isLoading$ | async)"
+                             [ngModel]="state?.appData?.data?.product.name" class="form-control"
                              name="name"
                              type="text">
                     </div>
                   </div>
                   <div class="row mb-3">
-                    <label class="col-sm-3 col-form-label" for="email">Email</label>
+                    <label class="col-sm-3 col-form-label" for="harga">Harga</label>
                     <div class="col-sm-9">
-                      <input [disabled]="state?.appData?.data?.user.roleName === 'ROLE_USER' || (isLoading$ | async)" [ngModel]="state?.appData?.data?.product.harga" class="form-control"
+                      <input [checked]="state.appData?.data?.user?.enabled"
+                        [disabled]="!(state?.appData?.data?.user?.roleName === 'ROLE_SYSADMIN') || (isLoading$ | async)"
+                             [ngModel]="state?.appData?.data?.product.harga" class="form-control"
                              name="email"
                              type="text">
                     </div>
@@ -53,16 +66,11 @@
                   <div class="row mb-3">
                     <label class="col-sm-3 col-form-label" for="type">Stok</label>
                     <div class="col-sm-9">
-                      <input [disabled]="state?.appData?.data?.user.roleName === 'ROLE_USER' || (isLoading$ | async)" [ngModel]="state?.appData?.data?.product.stok" class="form-control"
+                      <input
+                        [checked]="state.appData?.data?.user?.enabled"
+                        [disabled]="!(state?.appData?.data?.user?.roleName === 'ROLE_SYSADMIN') || (isLoading$ | async)"
+                        [ngModel]="state?.appData?.data?.product.stok" class="form-control"
                              name="type"
-                             type="text">
-                    </div>
-                  </div>
-                  <div class="row mb-3">
-                    <label class="col-sm-3 col-form-label" for="imageurl">Image URL</label>
-                    <div class="col-sm-9">
-                      <input [disabled]="state?.appData?.data?.user.roleName === 'ROLE_USER' || (isLoading$ | async)" [ngModel]="state?.appData?.data?.product.imageUrl" class="form-control"
-                             name="imageUrl"
                              type="text">
                     </div>
                   </div>

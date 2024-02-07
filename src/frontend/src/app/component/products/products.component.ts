@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {DataState} from "../../enum/datastate.enum";
 import {BehaviorSubject, catchError, map, Observable, of, startWith} from "rxjs";
 import {State} from "../../interface/state";
-import {CustomHttpResponse, Page} from "../../interface/appstates";
+import {CustomHttpResponse, Page, Profile} from "../../interface/appstates";
 import {Product} from "../../interface/product";
 import {User} from "../../interface/user";
 import {Router} from "@angular/router";
@@ -17,7 +17,8 @@ import { saveAs } from 'file-saver';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit{
-  productsState$: Observable<State<CustomHttpResponse<Page<Product> & User>>>;
+  profileState$: Observable<State<CustomHttpResponse<Profile>>>;
+  productsState$: Observable<State<CustomHttpResponse<Page<Product> & User >>>;
   private dataSubject = new BehaviorSubject<CustomHttpResponse<Page<Product> & User>>(null);
   private isLoadingSubject = new BehaviorSubject<boolean>(false);
   isLoading$ = this.isLoadingSubject.asObservable();
@@ -116,4 +117,29 @@ export class ProductsComponent implements OnInit{
         break;
     }
   }
+  // updatePicture(image: File): void {
+  //
+  //   if (image) {
+  //     this.isLoadingSubject.next(true);
+  //     this.productsState$ = this.productService.updateImage$(this.getFormData(image))
+  //       .pipe(
+  //         map(response => {
+  //           console.log(response);
+  //           this.isLoadingSubject.next(false);
+  //           return {dataState: DataState.LOADED, appData: this.dataSubject.value};
+  //         }),
+  //         startWith({dataState: DataState.LOADED, appData: this.dataSubject.value}),
+  //         catchError((error: string) => {
+  //           this.isLoadingSubject.next(false);
+  //           return of({dataState: DataState.LOADED, appData: this.dataSubject.value, error})
+  //         })
+  //       )
+  //   }
+  // }
+  //
+  // private getFormData(image: File): FormData {
+  //   const formData = new FormData();
+  //   formData.append('image', image);
+  //   return formData;
+  // }
 }

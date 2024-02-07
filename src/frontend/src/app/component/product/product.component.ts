@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DataState} from "../../enum/datastate.enum";
 import {BehaviorSubject, catchError, map, Observable, of, startWith, switchMap} from "rxjs";
 import {State} from "../../interface/state";
@@ -12,14 +12,14 @@ import {NgForm} from "@angular/forms";
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css']
 })
-export class ProductComponent {
+export class ProductComponent implements OnInit{
 
   productState$: Observable<State<CustomHttpResponse<ProductState>>>;
   readonly DataState = DataState;
   private dataSubject = new BehaviorSubject<CustomHttpResponse<ProductState>>(null);
   private isLoadingSubject = new BehaviorSubject<boolean>(false);
   isLoading$ = this.isLoadingSubject.asObservable();
-  private readonly CUSTOMER_ID: string = 'id';
+  private readonly PRODUCT_ID: string = 'id';
 
   constructor(private activatedRoute: ActivatedRoute, private productService: ProductService) {
   }
@@ -27,7 +27,7 @@ export class ProductComponent {
   ngOnInit(): void {
     this.productState$ = this.activatedRoute.paramMap.pipe(
       switchMap((params: ParamMap) => {
-        return this.productService.product$(+params.get(this.CUSTOMER_ID))
+        return this.productService.product$(+params.get(this.PRODUCT_ID))
           .pipe(
             map(response => {
               console.log(response);
@@ -51,13 +51,6 @@ export class ProductComponent {
   //         console.log(response);
   //         this.dataSubject.next({
   //           ...response,
-  //           data: {
-  //             ...response.data,
-  //             product: {
-  //               ...response.data.product,
-  //               invoices: this.dataSubject.value.data.product.invoices
-  //             }
-  //           }
   //         });
   //
   //         this.isLoadingSubject.next(false);

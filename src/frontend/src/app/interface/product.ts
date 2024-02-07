@@ -3,6 +3,7 @@ export interface Product {
   name: string;
   harga: string;
   stok: string;
-  imageUrl: string;
+  imageUrl?: string;
+  roleName: string;
   createdAt: Date;
 }

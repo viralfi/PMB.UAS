@@ -120,7 +120,7 @@ public class HandleException extends ResponseEntityExceptionHandler implements E
                         .timeStamp(now().toString())
                         .reason(exception.getMessage() != null ?
                                 (exception.getMessage().contains("expected 1, actual 0") ? "Record not found" : exception.getMessage())
-                                : "Some error occurred")
+                                : "Some error occurred ")
                         .developerMessage(exception.getMessage())
                         .status(INTERNAL_SERVER_ERROR)
                         .statusCode(INTERNAL_SERVER_ERROR.value())
@@ -217,6 +217,6 @@ public class HandleException extends ResponseEntityExceptionHandler implements E
                 return "Duplicate entry. Please try again.";
             }
         }
-        return "Some error occurred";
+        return "Email yang anda masukan Belum Terdaftar";
     }
 }

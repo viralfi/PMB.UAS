@@ -25,6 +25,8 @@ export interface CustomHttpResponse<T> {
 }
 
 export interface Profile {
+  customer?: Customer;
+  product?: Product;
   user?: User;
   events?: Events[];
   roles?: Role[];
@@ -68,3 +70,4 @@ export interface ProductState {
   user: User;
   product: Product;
 }
+

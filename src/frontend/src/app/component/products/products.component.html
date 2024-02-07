@@ -44,7 +44,10 @@
               <tbody class="table-body">
               <tr *ngFor="let product of state?.appData?.data?.page.content" class="cell-1">
                 <th class="text-center">{{ product.id }}</th>
-                <td><img [src]="product.imageUrl" width="42" height="42" class="rounded-circle" [alt]="product.name"></td>
+                <td>
+                  <a  aria-expanded="false">
+                    <img [src]="product?.imageUrl" [alt]="product?.name" class="user-avatar-md rounded-circle"></a>
+                </td>
                 <td>{{ product.name }}</td>
                 <td>{{ product.harga }}</td>
                 <td>{{ product.stok }}</td>
@@ -87,3 +90,8 @@
     <div>{{ state.error }}</div>
   </ng-container>
 </ng-container>
+
+<!--<form enctype="multipart/form-data" style="display:none;">-->
+<!--  <input #fileInput (change)="updatePicture($event.target.files[0])" accept="image/*" id="image" name="image"-->
+<!--         ngModel placeholder="file" type="file"/>-->
+<!--</form>-->

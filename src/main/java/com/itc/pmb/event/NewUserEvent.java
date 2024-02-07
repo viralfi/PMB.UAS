@@ -10,9 +10,15 @@ import org.springframework.context.ApplicationEvent;
 public class NewUserEvent extends ApplicationEvent {
     private EventType type;
     private String email;
+    private String name;
     public NewUserEvent(String email, EventType type) {
         super(email);
         this.type = type;
         this.email = email;
     }
+//    public NewProductEvent(String name, EventType type) {
+//        super(name);
+//        this.type = type;
+//        this.name = name;
+//    }
 }

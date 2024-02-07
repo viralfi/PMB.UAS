@@ -37,6 +37,7 @@ public class SecurityConfig {
             "/user/verify/account/**",
             "/user/refresh/token/**",
             "/user/image/**",
+            "/product/image/**",
             "/user/new/password/**"
     };
     private final BCryptPasswordEncoder encoder;

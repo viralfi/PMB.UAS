@@ -10,5 +10,6 @@ export interface Customer {
   imageUrl: string;
   phone: string;
   createdAt: Date;
+  roleName: string;
   invoices?: Invoice[];
 }

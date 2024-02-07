@@ -27,7 +27,7 @@
                   <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"
                           aria-label="Close"></button>
                 </div>
-                <div *ngIf="state.appData.message"
+                <div *ngIf="state.message"
                      class="alert alert-success bg-success text-light border-0 alert-dismissible fade show"
                      role="alert">
                   {{ state.appData.message }}
@@ -39,13 +39,19 @@
                   <div class="row">
                     <div class="col-md-12" style="margin-bottom: 15px;">
                       <div class="form-group">
-                        <label>Services</label>
-                        <input type="text" ngModel name="services" class="form-control" required>
+                        <label>Product</label>
+                        <input
+                          [checked]="state.appData?.data?.user?.enabled"
+                          [disabled]="!(state?.appData?.data?.user?.roleName === 'ROLE_SYSADMIN' || state?.appData?.data?.user?.roleName === 'ROLE_ADMIN') || (isLoading$ | async)"
+                          type="text" ngModel name="services" class="form-control" required>
                       </div>
                     </div>
                     <div class="col-md-6" style="margin-bottom: 15px;">
                       <label>Customer</label>
-                      <select [ngModel]="" name="customerId" class="form-control select-cl" required>
+                      <select
+                        [checked]="state.appData?.data?.user?.enabled"
+                        [disabled]="!(state?.appData?.data?.user?.roleName === 'ROLE_SYSADMIN' || state?.appData?.data?.user?.roleName === 'ROLE_ADMIN') || (isLoading$ | async)"
+                        [ngModel]="" name="customerId" class="form-control select-cl" required>
                         <option *ngFor="let customer of state?.appData?.data?.customers"
                                 [ngValue]="customer.id"
                                 [selected]=""
@@ -57,18 +63,27 @@
                     <div class="col-md-6" style="margin-bottom: 15px;">
                       <div class="form-group">
                         <label>Total</label>
-                        <input type="total" ngModel name="total" class="form-control" required>
+                        <input
+                          [checked]="state.appData?.data?.user?.enabled"
+                          [disabled]="!(state?.appData?.data?.user?.roleName === 'ROLE_SYSADMIN' || state?.appData?.data?.user?.roleName === 'ROLE_ADMIN') || (isLoading$ | async)"
+                          type="total" ngModel name="total" class="form-control" required>
                       </div>
                     </div>
                     <div class="col-md-6" style="margin-bottom: 15px;">
                       <div class="form-group">
                         <label>Date</label>
-                        <input type="date" ngModel name="date" class="form-control" required>
+                        <input
+                          [checked]="state.appData?.data?.user?.enabled"
+                          [disabled]="!(state?.appData?.data?.user?.roleName === 'ROLE_SYSADMIN' || state?.appData?.data?.user?.roleName === 'ROLE_ADMIN') || (isLoading$ | async)"
+                          type="date" ngModel name="date" class="form-control" required>
                       </div>
                     </div>
                     <div class="col-md-6" style="margin-bottom: 15px;">
                       <label>Status</label>
-                      <select name="status" ngModel="PENDING" class="form-control" required>
+                      <select
+                        [checked]="state.appData?.data?.user?.enabled"
+                        [disabled]="!(state?.appData?.data?.user?.roleName === 'ROLE_SYSADMIN' || state?.appData?.data?.user?.roleName === 'ROLE_ADMIN') || (isLoading$ | async)"
+                        name="status" ngModel="PENDING" class="form-control" required>
                         <option value="PENDING">PENDING</option>
                         <option value="PAID">PAID</option>
                         <option value="CANCELED">CANCELED</option>

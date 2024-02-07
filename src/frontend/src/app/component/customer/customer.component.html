@@ -34,20 +34,56 @@
                 </div>
               </div>
             </div>
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Total Invoices</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Customer Total Invoices</h6>
+                <ul class="list-group">
+                  <li class="list-group-item d-flex justify-content-between align-items-center"
+                      style="font-size: 20px;">
+                    Total Current Invoices
+                    <span class="" style="font-size: 20px;">
+                              {{ state?.appData?.data?.customer.invoices.length }}
+                            </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Total Billed</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Customer Total Billed</h6>
+                <ul class="list-group">
+                  <li class="list-group-item d-flex justify-content-between align-items-center"
+                      style="font-size: 20px;">
+                    Total Billed
+                    <span class="badge bg-success" style="font-size: 20px;">
+                               $ {{ state?.appData?.data?.customer.invoices | ExtractArrayValue: 'invoices' }}
+                            </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
           <div class="col-xl-8">
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Profile Details</h5>
                 <form #customerForm="ngForm" (ngSubmit)="updateCustomer(customerForm)">
-                  <input [disabled]="state?.appData?.data?.user.roleName === 'ROLE_USER' || (isLoading$ | async)" [ngModel]="state?.appData?.data?.customer.id" name="id"
+                  <input [checked]="state.appData?.data?.user?.enabled"
+                         [disabled]="!(state?.appData?.data?.user?.roleName === 'ROLE_SYSADMIN' || state?.appData?.data?.user?.roleName === 'ROLE_ADMIN') || (isLoading$ | async)"
+                         [ngModel]="state?.appData?.data?.customer.id" name="id"
                          type="hidden">
-                  <input [disabled]="state?.appData?.data?.user.roleName === 'ROLE_USER' || (isLoading$ | async)" [ngModel]="state?.appData?.data?.customer.createdAt" name="createdAt"
+                  <input [checked]="state.appData?.data?.user?.enabled"
+                         [disabled]="!(state?.appData?.data?.user?.roleName === 'ROLE_SYSADMIN' || state?.appData?.data?.user?.roleName === 'ROLE_ADMIN') || (isLoading$ | async)"
+                         [ngModel]="state?.appData?.data?.customer.createdAt" name="createdAt"
                          type="hidden">
                   <div class="row mb-3">
                     <label class="col-sm-3 col-form-label" for="name">Name</label>
                     <div class="col-sm-9">
-                      <input [disabled]="state?.appData?.data?.user.roleName === 'ROLE_USER' || (isLoading$ | async)" [ngModel]="state?.appData?.data?.customer.name" class="form-control"
+                      <input [checked]="state.appData?.data?.user?.enabled"
+                             [disabled]="!(state?.appData?.data?.user?.roleName === 'ROLE_SYSADMIN' || state?.appData?.data?.user?.roleName === 'ROLE_ADMIN') || (isLoading$ | async)"
+                             [ngModel]="state?.appData?.data?.customer.name" class="form-control"
                              name="name"
                              type="text">
                     </div>
@@ -55,7 +91,9 @@
                   <div class="row mb-3">
                     <label class="col-sm-3 col-form-label" for="email">Email</label>
                     <div class="col-sm-9">
-                      <input [disabled]="state?.appData?.data?.user.roleName === 'ROLE_USER' || (isLoading$ | async)" [ngModel]="state?.appData?.data?.customer.email" class="form-control"
+                      <input [checked]="state.appData?.data?.user?.enabled"
+                             [disabled]="!(state?.appData?.data?.user?.roleName === 'ROLE_SYSADMIN' || state?.appData?.data?.user?.roleName === 'ROLE_ADMIN') || (isLoading$ | async)"
+                             [ngModel]="state?.appData?.data?.customer.email" class="form-control"
                              name="email"
                              type="text">
                     </div>
@@ -63,7 +101,9 @@
                   <div class="row mb-3">
                     <label class="col-sm-3 col-form-label" for="type">Type</label>
                     <div class="col-sm-9">
-                      <input [disabled]="state?.appData?.data?.user.roleName === 'ROLE_USER' || (isLoading$ | async)" [ngModel]="state?.appData?.data?.customer.type" class="form-control"
+                      <input [checked]="state.appData?.data?.user?.enabled"
+                             [disabled]="!(state?.appData?.data?.user?.roleName === 'ROLE_SYSADMIN' || state?.appData?.data?.user?.roleName === 'ROLE_ADMIN') || (isLoading$ | async)"
+                             [ngModel]="state?.appData?.data?.customer.type" class="form-control"
                              name="type"
                              type="text">
                     </div>
@@ -71,7 +111,9 @@
                   <div class="row mb-3">
                     <label class="col-sm-3 col-form-label" for="status">Status</label>
                     <div class="col-sm-9">
-                      <input [disabled]="state?.appData?.data?.user.roleName === 'ROLE_USER' || (isLoading$ | async)" [ngModel]="state?.appData?.data?.customer.status" class="form-control"
+                      <input [checked]="state.appData?.data?.user?.enabled"
+                             [disabled]="!(state?.appData?.data?.user?.roleName === 'ROLE_SYSADMIN' || state?.appData?.data?.user?.roleName === 'ROLE_ADMIN') || (isLoading$ | async)"
+                             [ngModel]="state?.appData?.data?.customer.status" class="form-control"
                              name="status"
                              type="text">
                     </div>
@@ -79,7 +121,9 @@
                   <div class="row mb-3">
                     <label class="col-sm-3 col-form-label" for="address">Address</label>
                     <div class="col-sm-9">
-                      <input [disabled]="state?.appData?.data?.user.roleName === 'ROLE_USER' || (isLoading$ | async)" [ngModel]="state?.appData?.data?.customer.address" class="form-control"
+                      <input [checked]="state.appData?.data?.user?.enabled"
+                        [disabled]="!(state?.appData?.data?.user?.roleName === 'ROLE_SYSADMIN' || state?.appData?.data?.user?.roleName === 'ROLE_ADMIN') || (isLoading$ | async)"
+                             [ngModel]="state?.appData?.data?.customer.address" class="form-control"
                              name="address"
                              type="text">
                     </div>
@@ -87,7 +131,9 @@
                   <div class="row mb-3">
                     <label class="col-sm-3 col-form-label" for="phone">Phone</label>
                     <div class="col-sm-9">
-                      <input [disabled]="state?.appData?.data?.user.roleName === 'ROLE_USER' || (isLoading$ | async)" [ngModel]="state?.appData?.data?.customer.phone" class="form-control"
+                      <input [checked]="state.appData?.data?.user?.enabled"
+                             [disabled]="!(state?.appData?.data?.user?.roleName === 'ROLE_SYSADMIN' || state?.appData?.data?.user?.roleName === 'ROLE_ADMIN') || (isLoading$ | async)"
+                             [ngModel]="state?.appData?.data?.customer.phone" class="form-control"
                              name="phone"
                              type="text">
                     </div>
@@ -95,12 +141,15 @@
                   <div class="row mb-3">
                     <label class="col-sm-3 col-form-label" for="imageurl">Image URL</label>
                     <div class="col-sm-9">
-                      <input [disabled]="state?.appData?.data?.user.roleName === 'ROLE_USER' || (isLoading$ | async)" [ngModel]="state?.appData?.data?.customer.imageUrl" class="form-control"
+                      <input [checked]="state.appData?.data?.user?.enabled"
+                             [disabled]="!(state?.appData?.data?.user?.roleName === 'ROLE_SYSADMIN' || state?.appData?.data?.user?.roleName === 'ROLE_ADMIN') || (isLoading$ | async)"
+                             [ngModel]="state?.appData?.data?.customer.imageUrl" class="form-control"
                              name="imageUrl"
                              type="text">
                     </div>
                   </div>
-                  <button [disabled]="state?.appData?.data?.user.roleName === 'ROLE_USER' || (isLoading$ | async)"
+                  <button [checked]="state.appData?.data?.user?.enabled"
+                    [disabled]="state?.appData?.data?.user.roleName === 'ROLE_SYSADMIN' || (isLoading$ | async)"
                           class="btn btn-primary float-end" type="submit">
                     <span *ngIf="isLoading$ | async" aria-hidden="true" class="spinner-border spinner-border-sm"
                           role="status" style="margin-right: 5px;"></span>

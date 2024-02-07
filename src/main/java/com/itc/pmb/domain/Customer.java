@@ -38,4 +38,6 @@ public class Customer {
     private String phone;
     private String imageUrl;
     private Date createdAt;
+    @OneToMany(mappedBy = "customer", fetch = EAGER, cascade = ALL)
+    private Collection<Invoice> invoices;
 }
